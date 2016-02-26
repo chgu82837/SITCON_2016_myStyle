@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1024">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>客製化我的開發環境並將它開源！ | by PastLeo</title>
+
+    <meta name="generator" content="Slide Show (S9)">
+    <meta name="author" content="PastLeo">
+
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <style>
+        h1,h2,h3,h4,h5,h6{
+            text-align: center;
+        }
+
+        /*loading style, title and author*/
+        div#loading{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transition: opacity 1s;
+
+            background: rgb(21, 21, 21);
+        }
+        div#loading h1{
+            margin: 0;
+            padding-top: 80px;
+            padding-bottom: 20px;
+
+            background: rgb(53, 53, 53);
+            border-bottom: #8ADFFF solid 3px;
+            color: rgb(152, 255, 189);
+        }
+        div#loading h3{
+            margin: 0;
+            padding-top: 20px;
+            padding-bottom: 20px;
+
+            background: rgb(72, 84, 66);
+            color: rgba(255, 179, 94, 1);
+        }
+        div#loading.done{
+            opacity:0;
+        }
+
+        div#loading .spinner {
+            -webkit-animation: rotation 1.4s linear infinite;
+            animation: rotation 1.4s linear infinite;
+            stroke: rgba(0, 149, 207, 1);
+            margin-left: auto;
+            display: block;
+            margin-right: auto;
+            margin-top: 10%;
+        }
+        @-webkit-keyframes rotation {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+            }
+        }
+        @keyframes rotation {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+            }
+        }
+        div#loading .spinner .circle {
+            stroke-dasharray: 187;
+            stroke-dashoffset: 0;
+            -webkit-transform-origin: center;
+            -ms-transform-origin: center;
+            transform-origin: center;
+            -webkit-animation: turn 1.4s ease-in-out infinite;
+            animation: turn 1.4s ease-in-out infinite;
+        }
+        @-webkit-keyframes turn {
+            0% {
+                stroke-dashoffset: 187;
+            }
+            50% {
+                stroke-dashoffset: 46.75;
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+            100% {
+                stroke-dashoffset: 187;
+                -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+            }
+        }
+        @keyframes turn {
+            0% {
+                stroke-dashoffset: 187;
+            }
+            50% {
+                stroke-dashoffset: 46.75;
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+            100% {
+                stroke-dashoffset: 187;
+                -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+            }
+        }
+
+        /*the background*/
+        body {
+            background: #545454; /* Old browsers */
+            background: -moz-radial-gradient(center, ellipse cover,  #545454 0%, #262626 100%); /* FF3.6+ */
+            background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#545454), color-stop(100%,#262626)); /* Chrome,Safari4+ */
+            background: -webkit-radial-gradient(center, ellipse cover,  #545454 0%,#262626 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-radial-gradient(center, ellipse cover,  #545454 0%,#262626 100%); /* Opera 12+ */
+            background: -ms-radial-gradient(center, ellipse cover,  #545454 0%,#262626 100%); /* IE10+ */
+            background: radial-gradient(ellipse at center,  #545454 0%,#262626 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#545454', endColorstr='#262626',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /*normal step*/
+        .step {
+          color:rgb(152, 255, 189);
+          width: 1024px;
+          height: 576px;
+          padding: 40px 60px;
+
+          font-size: 32px;
+
+          opacity: 0.9;
+          line-height: 1.6;
+
+          transition: all 0.5s ease 0s;
+        }
+
+        .step.future {
+          opacity: 0;
+          pointer-events:none;
+        }
+
+        .step.active {
+          opacity: 1;
+          text-shadow: 0px 0px 20px black;
+        }
+
+        .step.present {
+            z-index: 100;
+        }
+
+        /*markdown elements*/
+        h2{
+            margin-top: 20%;
+            margin-bottom: 10px;
+        }
+
+        h4{
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        pre {
+            background-color: rgba(56, 186, 112, 1);
+            padding: 15px;
+            overflow: auto;
+        }
+
+        code {
+            background-color: rgba(56, 186, 112, 0.82);
+            color: #D1CABC;
+            border-radius: 10px;
+            padding: 7px;
+            font-family: "Consolas","Montserrat",sans-serif;
+        }
+
+        blockquote {
+            margin: 0px;
+            padding-left: 40px;
+            border-left: 10px solid #000;
+            color: rgba(105, 105, 105, 1)
+        }
+
+        blockquote blockquote{
+            border: none;
+        }
+
+        blockquote p{
+            margin: 0;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        ul {
+            padding-left: 1.75em;
+            margin: 0px 0px 20px;
+        }
+
+        a {
+            color: rgba(0, 149, 207, 1);
+        }
+
+        strong {
+            color: rgba(255, 179, 94, 1);
+        }
+
+        /*controls*/
+
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .arrow {
+            width: 0px;
+            height: 0px;
+            border: 30px solid rgba(153, 186, 213, 0.5);
+            float: left;
+            margin-right: 30px;
+            -moz-user-select: none;
+        }
+
+        .prev {
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            border-left-width: 0px;
+            border-right-width: 50px;
+        }
+
+        .prev:hover {
+            border-right-color: rgba(194, 217, 225, 1);
+            cursor: pointer;
+        }
+
+        .next {
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+            border-right-color: transparent;
+            border-left-width: 50px;
+            border-right-width: 0px;
+        }
+
+        .next:hover{
+            border-left-color: rgba(194, 217, 225, 1);
+            cursor: pointer;
+        }
+
+        /* customization options of steps*/
+
+        .slide {
+            background: #383838;
+            border: black solid 1px;
+            border-radius: 10px;
+            overflow: auto;
+        }
+        .slide.active {
+            box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 10px;
+        }
+
+        .step.unclickable {
+            pointer-events:none;
+        }
+
+        .step.center p {
+            text-align: center;
+        }
+
+        .step.showOnlyWhenPresent {
+            opacity: 0;
+            pointer-events:none;
+        }
+
+        .step.showOnlyWhenPresent.present {
+            opacity: 1;
+            pointer-events:default;
+        }
+
+        .step.picture img{
+            max-height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        .step.slogen h2{
+            margin-top: 15%;
+            font-size: 1.9em;
+        }
+
+        
+.many_subtitle h2 {
+    margin-top: 15% !important;
+}
+
+.step.slogen h2 {
+    margin-top: 20%;
+}
+
+
+    </style>
+</head>
+
+<body class="impress-not-supported">
+
+<div id="impress">
+
+    <!-- note: assumes no header (breaking slides w/ SLIDE directive) -->
+
+    <div class='step slogen' data-x='0' data-y='0' >
+      <!-- === begin markdown block ===
+
+      generated by markdown/1.2.0 on Ruby 2.2.4 (2015-12-16) [x86_64-linux]
+                on 2016-02-26 15:08:23 +0000 with Markdown engine kramdown (1.9.0)
+                  using options {}
+  -->
+
+<!-- _S9SLIDE_  x=0 y=0 slogen -->
+
+<h2 id="section">客製化我的開發環境並將它開源！</h2>
+
+<h4 id="pastleo">PastLeo</h4>
+
+
+    </div>
+
+    <div class='step many_subtitle slogen' data-x='0' data-y='0' data-z='-2000' >
+      <!-- _S9SLIDE_  x=0 y=0 z=-2000 many_subtitle slogen -->
+
+<h2 id="section-1">我是誰？</h2>
+
+<h4 id="section-2">一個對環境有強迫症的大四中興同學</h4>
+
+<h4 id="section-3">名字不重要，因為這是短講，下一張</h4>
+
+<h4 id="httppastleomehttppastleome">有興趣的可以去 <a href="http://pastleo.me">http://pastleo.me</a></h4>
+
+
+    </div>
+
+    <div class='step slogen' data-x='0' data-y='700' >
+      <!-- _S9SLIDE_  x=0 y=700 slogen -->
+
+<h2 id="section-4">故事是這樣開始的…</h2>
+
+
+    </div>
+
+    <div class='step picture' data-x='0' data-y='700' data-z='-2000' >
+      <!-- _S9SLIDE_  picture x=0 y=700 z=-2000 -->
+
+<p><img src="http://i.imgur.com/LKZO6IN.png" alt="Original terminal" /></p>
+
+<h4 id="section-5">這樣誰受的了！？</h4>
+
+
+    </div>
+
+    <div class='step picture' data-x='0' data-y='700' data-z='-4000' >
+      <!-- _S9SLIDE_  picture x=0 y=700 z=-4000 -->
+
+<p><img src="http://i.imgur.com/WfzmmqJ.png" alt="My terminal" /></p>
+
+<h4 id="section-6">這樣好多了</h4>
+
+
+    </div>
+
+    <div class='step slogen' data-x='0' data-y='2100' data-rotate='180' data-scale='2' >
+      <!-- _S9SLIDE_  x=0 y=2100 rotate=180 scale=2 slogen -->
+
+<h2 id="theme-">你以為我只是寫寫 theme 嗎？</h2>
+
+<h4 id="section-7">你就大錯特錯了</h4>
+
+
+    </div>
+
+    <div class='step slogen' data-x='0' data-y='1400' data-z='-1500' data-rotate='180' >
+      <!-- _S9SLIDE_  x=0 y=1400 z=-1500 rotate=180 slogen -->
+
+<h2 id="dotsettinghttpsgithubcomchgu82837dotsetting">強迫症結果一： <a href="https://github.com/chgu82837/dotSetting">dotSetting</a></h2>
+
+<h4 id="section-8">家目錄下的隱藏檔集合，附贈部屬程式</h4>
+
+
+    </div>
+
+    <div class='step ' data-x='0' data-y='1400' data-z='-3000' data-rotate='180' >
+      <!-- _S9SLIDE_  x=0 y=1400 z=-3000 rotate=180 -->
+
+<h3 id="spec">Spec</h3>
+
+<ul>
+  <li>我家目錄的隱藏檔，可以讓我的終端機長得比較炫炮 (廢話)
+    <ul>
+      <li>還包含 <code>fish</code> / <code>vim</code> 套件自動安裝啥的東西</li>
+      <li>我自幹的 <code>fish</code> 主題：<a href="https://github.com/chgu82837/theme-PastFish">https://github.com/chgu82837/theme-PastFish</a></li>
+    </ul>
+  </li>
+  <li>使用 <code>rsync</code> 自動佈署</li>
+  <li>有二層佈署，可以把敏感資料放在第二層 <code>custom</code> 資料夾內</li>
+  <li><a href="https://github.com/chgu82837/dotSetting">https://github.com/chgu82837/dotSetting</a></li>
+</ul>
+
+
+    </div>
+
+    <div class='step slogen' data-x='0' data-y='1400' data-z='-5000' data-rotate='180' >
+      <!-- _S9SLIDE_  x=0 y=1400 z=-5000 rotate=180 slogen -->
+
+<h2 id="demo">DEMO</h2>
+
+<h4 id="section-9">安裝一次給大家看</h4>
+
+
+    </div>
+
+    <div class='step ' data-x='-600' data-y='2800' data-z='-1500' data-rotate='180' >
+      <!-- _S9SLIDE_  x=-600 y=2800 z=-1500 rotate=180 -->
+
+<h2 id="pastpresshttpsgithubcomchgu82837pastpress">強迫症結果二： <a href="https://github.com/chgu82837/PastPress">PastPress</a></h2>
+
+<h4 id="section-10">就是你現在看到的簡報的產生器</h4>
+
+<h4 id="theme">的 Theme</h4>
+
+
+    </div>
+
+    <div class='step ' data-x='-600' data-y='2800' data-z='-3000' data-rotate='180' >
+      <!-- _S9SLIDE_  x=-600 y=2800 z=-3000 rotate=180 -->
+
+<h3 id="spec-1">Spec</h3>
+
+<ul>
+  <li>基於 <a href="http://slideshow-s9.github.io/index.html">Slideshow s9</a> 以及 <a href="https://github.com/impress/impress.js">Impress.js</a>，用 <code>markdown</code> 作為簡報撰寫語言</li>
+  <li>為了解決 <code>markdown</code> 撰寫投影片排版的麻煩 (尤其是圖片)，我利用 <code>slideshow</code> 可以幫投影片加 <code>class</code> 的方式控制圖片排版</li>
+  <li><a href="https://github.com/chgu82837/PastPress">https://github.com/chgu82837/PastPress</a></li>
+</ul>
+
+
+    </div>
+
+    <div class='step slogen' data-x='-600' data-y='2800' data-z='-5000' data-rotate='180' >
+      <!-- _S9SLIDE_  x=-600 y=2800 z=-5000 rotate=180 slogen -->
+
+<h2 id="demo-1">DEMO</h2>
+
+<h4 id="section-11">看一下這個投影片的原始碼囉</h4>
+
+
+    </div>
+
+    <div class='step ' data-x='600' data-y='2800' data-z='-1500' data-rotate='180' >
+      <!-- _S9SLIDE_  x=600 y=2800 z=-1500 rotate=180 -->
+
+<h2 id="dockerrunnerhttpsgithubcomchgu82837dockerrunner">強迫症結果三： <a href="https://github.com/chgu82837/dockerRunner">dockerRunner</a></h2>
+
+<h4 id="docker-">docker 的小工具</h4>
+
+
+    </div>
+
+    <div class='step ' data-x='600' data-y='2800' data-z='-3000' data-rotate='180' >
+      <!-- _S9SLIDE_  x=600 y=2800 z=-3000 rotate=180 -->
+
+<h3 id="spec-2">Spec</h3>
+
+<ul>
+  <li>類似 <code>docker-compose</code> 可以幫忙下 <code>docker run</code> 的設定，但設定可放置在本 git repo 內
+    <ul>
+      <li>這樣就可以在任意資料夾直接執行 <code>docker image</code> 一般</li>
+    </ul>
+  </li>
+  <li>另一部分是可以幫忙 <code>Dockerfile</code> 的 scaffolding</li>
+  <li><a href="https://github.com/chgu82837/dockerRunner">https://github.com/chgu82837/dockerRunner</a></li>
+</ul>
+
+
+    </div>
+
+    <div class='step slogen' data-x='600' data-y='2800' data-z='-5000' data-rotate='180' >
+      <!-- _S9SLIDE_  x=600 y=2800 z=-5000 rotate=180 slogen -->
+
+<h2 id="demo-2">DEMO</h2>
+
+<h4 id="section-12">看不懂沒關係，用一次給各位看</h4>
+
+
+    </div>
+
+    <div class='step ' data-x='0' data-y='2100' data-z='-7000' data-rotate='180' data-scale='2' >
+      <!-- _S9SLIDE_  x=0 y=2100 z=-7000 rotate=180 scale=2 -->
+
+<h2 id="section-13">這三個大概是我目前有開源的客製化小東西</h2>
+
+<h4 id="qa-">所以你以為要 QA 了嗎？</h4>
+
+
+    </div>
+
+    <div class='step slogen' data-x='0' data-y='4200' data-scale='3' >
+      <!-- _S9SLIDE_  x=0 y=4200 scale=3 slogen -->
+
+<h2 id="section-14">其實我不是來炫我做了啥的</h2>
+
+<h4 id="section-15">要不然哩</h4>
+
+
+    </div>
+
+    <div class='step slogen' data-x='0' data-y='4200' data-z='-3000' data-scale='2' >
+      <!-- _S9SLIDE_  x=0 y=4200 z=-3000 scale=2 slogen -->
+
+<h2 id="section-16">為了將之開源，我們要把它包裝好</h2>
+
+
+    </div>
+
+    <div class='step slogen many_subtitle' data-x='0' data-y='4200' data-z='-6000' data-scale='2' >
+      <!-- _S9SLIDE_  x=0 y=4200 z=-6000 scale=2 slogen many_subtitle -->
+
+<h2 id="section-17">為何？</h2>
+
+<h4 id="section-18">方便推坑</h4>
+
+<h4 id="section-19">撿到新機器的時候，可以瞬間將之馴服</h4>
+
+<h4 id="section-20">然後就可以自動化了</h4>
+
+
+    </div>
+
+    <div class='step slogen' data-x='0' data-y='4200' data-z='-9000' data-scale='2' >
+      <!-- _S9SLIDE_  x=0 y=4200 z=-9000 scale=2 slogen -->
+
+<h2 id="section-21">如何做？</h2>
+
+<h4 id="section-22">盡量使用別人寫好的框架</h4>
+
+<h4 id="section-23">寫好安裝包</h4>
+
+
+    </div>
+
+    <div class='step ' data-x='0' data-y='6300' data-z='-9000' data-rotate-x='180' data-scale='3' >
+      <!-- _S9SLIDE_  x=0 y=6300 z=-9000 rotate-x=180 scale=3 -->
+
+<h2 id="section-24">雖然只是一些無聊的小東西</h2>
+
+<h4 id="section-25">但對我也不是毫無幫助</h4>
+
+
+    </div>
+
+    <div class='step ' data-x='0' data-y='6300' data-z='-6000' data-rotate-x='180' data-scale='3' >
+      <!-- _S9SLIDE_  x=0 y=6300 z=-6000 rotate-x=180 scale=3 -->
+
+<h2 id="section-26">好處 #1</h2>
+
+<h4 id="unix-">我為了能夠包裝這些東西，學到了不少 unix 指令</h4>
+
+
+    </div>
+
+    <div class='step ' data-x='0' data-y='6300' data-z='-3000' data-rotate-x='180' data-scale='3' >
+      <!-- _S9SLIDE_  x=0 y=6300 z=-3000 rotate-x=180 scale=3 -->
+
+<h2 id="section-27">好處 #2</h2>
+
+<h4 id="section-28">作為凡人的我們，可以從自己的小東西開始”練習”開源貢獻</h4>
+
+<h4 id="section-29">其實不見得一定是客製化，像是遊戲或是小工具也不錯啊</h4>
+
+
+    </div>
+
+    <div class='step ' data-x='0' data-y='6300' data-z='0' data-rotate-x='180' data-scale='3' >
+      <!-- _S9SLIDE_  x=0 y=6300 z=0 rotate-x=180 scale=3 -->
+
+<h2 id="section-30">好處 #3</h2>
+
+<h4 id="section-31"><strong>可以跟別人炫耀</strong>，可以讓別人了解你</h4>
+
+
+    </div>
+
+    <div class='step ' data-x='0' data-y='6300' data-z='3000' data-rotate-x='180' data-scale='3' >
+      <!-- _S9SLIDE_  x=0 y=6300 z=3000 rotate-x=180 scale=3 -->
+
+<h2 id="section-32">好處 #4</h2>
+
+<h4 id="section-33">這些是可以用的東西啊，自己用起來就是爽</h4>
+
+
+    </div>
+
+    <div class='step ' data-x='-2000' data-y='4000' data-z='6000' data-rotate='90' data-scale='5' >
+      <!-- _S9SLIDE_  x=-2000 y=4000 z=6000 rotate=90 scale=5 -->
+
+<h2 id="section-34">就這樣</h2>
+
+<h4 id="section-35">以上就是今天來跟大家分享的東西</h4>
+
+<h4 id="section-36">請鞭小力點</h4>
+
+<h4 id="section-37">謝謝大家</h4>
+
+
+    </div>
+
+    <div class='step ' data-x='-5000' data-y='4000' data-z='6000' data-rotate='90' data-scale='5' >
+      <!-- _S9SLIDE_  x=-5000 y=4000 z=6000 rotate=90 scale=5 -->
+
+<h3 id="section-38">聯絡資訊</h3>
+
+<ul>
+  <li>身份：中興資訊社社長、五倍紅寶石當工讀生</li>
+  <li>聯絡我：
+    <ul>
+      <li>我的個人網站：<a href="http://pastleo.me">http://pastleo.me</a></li>
+      <li><a href="http://fb.me/pastleo">http://fb.me/pastleo</a></li>
+    </ul>
+  </li>
+  <li>宣傳一下：
+    <ul>
+      <li><a href="http://nchuit.cc">中興資訊社</a>，中區同學們，快來參與關注我們！</li>
+      <li><a href="http://5xruby.tw">五倍紅寶石</a>，我們有許多課程喔～快來參加</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- === end markdown block === -->
+
+    </div>
+
+
+</div>
+
+<div id="loading">
+    <h1>客製化我的開發環境並將它開源！</h1>
+    <h3>PastLeo</h3>
+    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>
+</div>
+
+<div class="controls">
+    <div class="arrow prev"></div>
+    <div class="arrow next"></div>
+</div>
+
+<script src="http://netdna.impressjscdn.com/impressjs/0.5.3/js/impress.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script>
+    var impressInstance;
+    $(document).ready(function(){
+        impressInstance = impress();
+        impressInstance.init();
+        /*impressInstance.prev_ori = impressInstance.prev;*/
+        impressInstance.next_ori = impressInstance.next;
+        impressInstance.next = function(){
+            impressInstance.next_ori();
+            $("div.step.active").removeClass("future");
+        };
+        $(".controls .arrow.prev").click(impressInstance.prev);
+        $(".controls .arrow.next").click(impressInstance.next);
+        if(window.location.hash)
+            $("div#impress div.step" + window.location.hash.replace("#/","#")).prevAll().removeClass("future");
+        setTimeout(function(){
+            $('div#loading').addClass('done');
+            setTimeout(function(){
+                $('div#loading').remove();
+
+            },1000);
+        },2000);
+    });
+</script>
+
+</body>
+</html>
