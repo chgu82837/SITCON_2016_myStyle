@@ -236,29 +236,36 @@ author: PastLeo
 #### 這些是可以用的東西啊，自己用起來就是爽
 
 %%%%%%%%%%%%%%%
-!SLIDE x=-2000 y=4000 z=6000 rotate=90 scale=5 slogen many_subtitle
+!SLIDE x=-2000 y=4000 z=6000 rotate=90 scale=5 slogen
 
 ## 就這樣
 
 #### 以上就是今天來跟大家分享的東西
 
-#### 請鞭小力點
+%%%%%%%%%%%%%%%
+!SLIDE x=-5000 y=4000 z=6000 rotate=90 scale=5 slogen many_subtitle picture
 
-#### 謝謝大家
+### 宣傳一下
+
+#### [五倍紅寶石](http://5xruby.tw)，現正招募實習生！
+
+#### [中興資訊社](http://nchuit.cc)，中區同學們，快來參與關注我們！
+
+![5xruby_nchuit](http://i.imgur.com/na7TC81.png)
 
 %%%%%%%%%%%%%%%
-!SLIDE x=-5000 y=4000 z=6000 rotate=90 scale=5 center-list
+!SLIDE x=-8000 y=4000 z=6000 rotate=90 scale=5 center-list
 
 ### 最後，一些東西
 
  * 本投影片位置：[http://ppt.cc/MXOs3](http://ppt.cc/MXOs3) 以及 [Repo](https://github.com/chgu82837/SITCON_2016_myStyle)
- * 身份：中興資訊社社長、五倍紅寶石工讀生
  * 聯絡我：
     * 我的個人網站：[http://pastleo.me](http://pastleo.me)
     * [http://fb.me/pastleo](http://fb.me/pastleo)
- * 宣傳一下：
-    * [中興資訊社](http://nchuit.cc)，中區同學們，快來參與關注我們！
-    * [五倍紅寶石](http://5xruby.tw)，我們有許多課程喔～快來參加
+
+#### 請鞭小力點
+
+#### 謝謝大家
 
 %% The End
 %%%%%%%%%%%%%%%
