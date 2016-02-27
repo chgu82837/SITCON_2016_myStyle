@@ -17,6 +17,10 @@ author: PastLeo
     margin-top: 20%;
 }
 
+.step.center-list ul, .step.center-list ul {
+    display:table; margin:0 auto;
+}
+
 %end
 
 %%%%%%%%%%%%%%%%%%%
@@ -242,13 +246,12 @@ author: PastLeo
 
 #### 謝謝大家
 
-#### 本投影片的 [Repo](https://github.com/chgu82837/SITCON_2016_myStyle) 以及 [連結](http://slides.pastleo.me/SITCON_2016_myStyle/)
-
 %%%%%%%%%%%%%%%
-!SLIDE x=-5000 y=4000 z=6000 rotate=90 scale=5
+!SLIDE x=-5000 y=4000 z=6000 rotate=90 scale=5 center-list
 
-### 聯絡資訊
+### 最後，一些東西
 
+ * 本投影片位置：[http://ppt.cc/MXOs3](http://ppt.cc/MXOs3) 以及 [Repo](https://github.com/chgu82837/SITCON_2016_myStyle)
  * 身份：中興資訊社社長、五倍紅寶石工讀生
  * 聯絡我：
     * 我的個人網站：[http://pastleo.me](http://pastleo.me)
@@ -259,4 +262,3 @@ author: PastLeo
 
 %% The End
 %%%%%%%%%%%%%%%
-%## 做這些東西，我也學到了一些
